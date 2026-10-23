@@ -1,0 +1,6 @@
+aws_region  = "us-east-1"
+bucket_name = "sravya-demo-bucket-12345"
+tags = {
+  Environment = "dev"
+  Owner       = "sravya"
+}
