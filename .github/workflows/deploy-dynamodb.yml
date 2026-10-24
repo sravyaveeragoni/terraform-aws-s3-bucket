@@ -36,4 +36,4 @@ jobs:
 
       - run: terraform init -input=false
       - run: terraform validate
-      - run: terraform apply -input=false -auto-approve -target=aws_dynamodb_table.this
+      - run: terraform apply -input=false -auto-approve -target=aws_dynamodb_table.this -target=aws_dynamodb_table.second
