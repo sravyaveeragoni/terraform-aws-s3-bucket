@@ -28,7 +28,7 @@ aws iam create-open-id-connect-provider \
   --thumbprint-list 6938fd4d98bab03faadb97b34396831e3780aea1 || true
 
 # 3. IAM role GitHub Actions assumes (only this repo: PRs and main)
-cat > /tmp/trust.json <<JSON
+cat > trust.json <<JSON
 {
   "Version": "2012-10-17",
   "Statement": [{
@@ -45,16 +45,17 @@ cat > /tmp/trust.json <<JSON
   }]
 }
 JSON
-aws iam create-role --role-name "$ROLE_NAME" --assume-role-policy-document file:///tmp/trust.json
+aws iam create-role --role-name "$ROLE_NAME" --assume-role-policy-document file://trust.json
 
-cat > /tmp/policy.json <<JSON
+cat > policy.json <<JSON
 {
   "Version": "2012-10-17",
   "Statement": [{"Effect": "Allow", "Action": ["s3:*", "dynamodb:*"], "Resource": "*"}]
 }
 JSON
 aws iam put-role-policy --role-name "$ROLE_NAME" --policy-name terraform-s3-dynamodb \
-  --policy-document file:///tmp/policy.json
+  --policy-document file://policy.json
 
+rm -f trust.json policy.json
 echo "Role ARN: arn:aws:iam::${ACCOUNT_ID}:role/${ROLE_NAME}"
 echo "Add it as GitHub secret AWS_ROLE_ARN, and repo variable BUCKET_NAME."

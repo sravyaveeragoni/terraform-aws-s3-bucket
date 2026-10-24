@@ -18,7 +18,7 @@ Destroy with `terraform destroy`.
 ## CI/CD (GitHub Actions)
 `.github/workflows/terraform.yml`:
 - **Pull request to `main`**: `fmt`, `init`, `validate`, `plan` (nothing is deployed).
-- **Merge of a PR into `main`** (`deploy-dynamodb.yml`): `terraform apply -target=aws_dynamodb_table.this`.
+- **Merge of a PR into `main`** (`deploy-dynamodb.yml`): `terraform apply` limited to the two DynamoDB tables.
 
 One-time setup:
 1. `bash scripts/bootstrap.sh` (creates remote state bucket, lock table, GitHub OIDC role).
