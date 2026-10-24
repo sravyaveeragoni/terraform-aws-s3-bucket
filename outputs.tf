@@ -17,3 +17,13 @@ output "dynamodb_table_arn" {
   description = "ARN of the DynamoDB table"
   value       = aws_dynamodb_table.this.arn
 }
+
+output "dynamodb_table_2_name" {
+  description = "Name of the second DynamoDB table"
+  value       = aws_dynamodb_table.second.name
+}
+
+output "dynamodb_table_2_arn" {
+  description = "ARN of the second DynamoDB table"
+  value       = aws_dynamodb_table.second.arn
+}

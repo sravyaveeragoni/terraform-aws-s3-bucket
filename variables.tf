@@ -56,3 +56,15 @@ variable "dynamodb_write_capacity" {
   type        = number
   default     = 5
 }
+
+variable "dynamodb_table_2_name" {
+  description = "Name of the second DynamoDB table"
+  type        = string
+  default     = "sravya-demo-table-2"
+}
+
+variable "dynamodb_table_2_hash_key" {
+  description = "Partition key attribute name of the second table (type String)"
+  type        = string
+  default     = "id"
+}
